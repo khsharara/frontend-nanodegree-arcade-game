@@ -24,6 +24,11 @@ Enemy.prototype.update = function(dt) {
     // which will ensure the game runs at the same speed for
     // all computers.
     this.x += (this.speed * dt);
+        // Reset the player to start position
+    if (this.x > 500 ) {
+        // this.x = 200;
+        this.x = -100;
+    }
 
     // Collision
     if (this.x < player.x + player.width &&
@@ -84,9 +89,9 @@ Player.prototype.handleInput = function(event) {
 
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
-var enemy1 = new Enemy(0, 60, 100);
-var enemy2 = new Enemy(0, 145, 150);
-var enemy3 = new Enemy(0, 225, 100);
+var enemy1 = new Enemy(-100, 60, 90);
+var enemy2 = new Enemy(-400, 145, 150);
+var enemy3 = new Enemy(-700, 225, 125);
 var allEnemies = [enemy1, enemy2, enemy3];
 
 // Place the player object in a variable called player
