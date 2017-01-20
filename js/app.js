@@ -5,10 +5,17 @@ var Enemy = function(x, y, speed) {
     this.x = x;
     this.y = y;
     this.speed = speed;
+    this.width = 50;
+    this.height = 50;
     // The image/sprite for our enemies, this uses
     // a helper we've provided to easily load images
     this.sprite = 'images/enemy-bug.png';
-};
+
+    if (this.x === Player.x && this.y === Player.y){
+        Player.x = 200;
+    }
+
+
 
 // Update the enemy's position, required method for game
 // Parameter: dt, a time delta between ticks
@@ -16,7 +23,16 @@ Enemy.prototype.update = function(dt) {
     // You should multiply any movement by the dt parameter
     // which will ensure the game runs at the same speed for
     // all computers.
-    this.x = this.x + (this.speed * dt);
+    this.x += (this.speed * dt);
+
+    // Collision
+    if (this.x < player.x + player.width &&
+        this.x + this.width > player.x &&
+        this.height + this.y > player.y) {
+            player.x = 200;
+            player.y = 400;}
+        console.log(this.width, player.width, this.x, player.x);
+    };
     
 };
 
@@ -32,12 +48,15 @@ var Player = function() {
     //initial position of player
     this.x = 200;
     this.y = 400;
+    this.width = 50;
+    this.height = 50;
 
     //image of player
     this.sprite = 'images/char-boy.png';
 };
 
 Player.prototype.update = function() {
+    // Reset the player to start position
     if (this.y < 0 ) {
         this.x = 200;
         this.y = 400;
@@ -52,15 +71,15 @@ Player.prototype.render = function() {
 
 Player.prototype.handleInput = function(event) {
     if (event === 'left' && this.x > 0) {
-        this.x = this.x - 100;
+        this.x -= 100;
     } else if (event === 'right' && this.x != 400) {
-        this.x = this.x + 100;
+        this.x += 100;
     } else if (event === 'up' && this.y > 0) {
-        this.y = this.y -82;
+        this.y -= 82;
     } else if (event === 'down' && this.y != 400) {
-        this.y = this.y + 82;
+        this.y += 82;
     }
-    console.log(this.y);
+    
 };
 
 // Now instantiate your objects.
