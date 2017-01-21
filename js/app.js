@@ -5,7 +5,7 @@ var Enemy = function(x, y, speed) {
     this.x = x;
     this.y = y;
     this.speed = speed;
-    this.width = 50;
+    this.width = 75;
     this.height = 50;
     // The image/sprite for our enemies, this uses
     // a helper we've provided to easily load images
@@ -33,12 +33,12 @@ Enemy.prototype.update = function(dt) {
     // Collision
     if (this.x < player.x + player.width &&
         this.x + this.width > player.x &&
+        this.y < player.y + player.height &&
         this.height + this.y > player.y) {
             player.x = 200;
             player.y = 400;}
         console.log(this.width, player.width, this.x, player.x);
     };
-    
 };
 
 // Draw the enemy on the screen, required method for game
@@ -77,11 +77,11 @@ Player.prototype.render = function() {
 Player.prototype.handleInput = function(event) {
     if (event === 'left' && this.x > 0) {
         this.x -= 100;
-    } else if (event === 'right' && this.x != 400) {
+    } else if (event === 'right' && this.x < 400) {
         this.x += 100;
     } else if (event === 'up' && this.y > 0) {
         this.y -= 82;
-    } else if (event === 'down' && this.y != 400) {
+    } else if (event === 'down' && this.y < 400) {
         this.y += 82;
     }
     
