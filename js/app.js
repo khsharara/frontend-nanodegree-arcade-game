@@ -20,6 +20,7 @@ Enemy.prototype.update = function(dt) {
     }
 
     // If collision occurs, reset player position
+    // code adapted from: https://developer.mozilla.org/en-US/docs/Games/Techniques/2D_collision_detection
     if (this.x < player.x + player.width &&
         this.x + this.width > player.x &&
         this.y < player.y + player.height &&
