@@ -1,6 +1,18 @@
-frontend-nanodegree-arcade-game
-===============================
+# Arcade Game - Frogger
+This game was built as a project for Udacity's Front-end Web Developer Nanodegree. The objective of the game is to get the player to cross the road into the water while avoiding any collision with the enemys, or bugs.
 
-Students should use this [rubric](https://review.udacity.com/#!/projects/2696458597/rubric) for self-checking their submission. Make sure the functions you write are **object-oriented** - either class functions (like Player and Enemy) or class prototype functions such as Enemy.prototype.checkCollisions, and that the keyword 'this' is used appropriately within your class and class prototype functions to refer to the object the function is called upon. Also be sure that the **readme.md** file is updated with your instructions on both how to 1. Run and 2. Play your arcade game.
+## Directory
+    - frontend-nanodegree-arcade-game (main directory)
+        - index.html (html file to open in browser)
+        - css (directory which contains all formatting)
+        - images (directory which containes all images)
+        - js (directory which contains the game engine and app script)
 
-For detailed instructions on how to get started, check out this [guide](https://docs.google.com/document/d/1v01aScPjSWCCWQLIpFqvg3-vXLH2e8_SZQKC8jNO0Dc/pub?embedded=true).
+## Install
+1. Download the frontend-nanodegree-arcade-game main directory
+2. Open the index.html file in Google Chrome
+
+## Play
+- Use the arrow keys (up, down, left, right) on your keyboard to move the player towards the water
+- Colliding with the bugs will reset the player to the start position
+- Once the water is reached, the player will respawn in their starting position
