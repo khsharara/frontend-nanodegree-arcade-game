@@ -1,43 +1,31 @@
 // Enemies our player must avoid
 var Enemy = function(x, y, speed) {
-    // Variables applied to each of our instances go here,
-    // we've provided one for you to get started
+    // All the variabels that apply to an Enemy instance
     this.x = x;
     this.y = y;
     this.speed = speed;
     this.width = 75;
     this.height = 50;
-    // The image/sprite for our enemies, this uses
-    // a helper we've provided to easily load images
+    // Sprite is used to represent an image
     this.sprite = 'images/enemy-bug.png';
-
-    if (this.x === Player.x && this.y === Player.y){
-        Player.x = 200;
-    }
-
-
+};
 
 // Update the enemy's position, required method for game
 // Parameter: dt, a time delta between ticks
 Enemy.prototype.update = function(dt) {
-    // You should multiply any movement by the dt parameter
-    // which will ensure the game runs at the same speed for
-    // all computers.
     this.x += (this.speed * dt);
-        // Reset the player to start position
-    if (this.x > 500 ) {
-        // this.x = 200;
+    // If the enemy leaves the canvas, loop them back infront of the canvas
+    if (this.x > 500) {
         this.x = -100;
     }
 
-    // Collision
+    // If collision occurs, reset player position
     if (this.x < player.x + player.width &&
         this.x + this.width > player.x &&
         this.y < player.y + player.height &&
         this.height + this.y > player.y) {
-            player.x = 200;
-            player.y = 400;}
-        console.log(this.width, player.width, this.x, player.x);
+        player.x = 200;
+        player.y = 400;
     };
 };
 
@@ -46,27 +34,23 @@ Enemy.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
 
-// Now write your own player class
-// This class requires an update(), render() and
-// a handleInput() method.
+// PLAYER CLASS
 var Player = function() {
-    //initial position of player
+    // All the variables that apply to a player instance
     this.x = 200;
     this.y = 400;
     this.width = 50;
     this.height = 50;
-
     //image of player
     this.sprite = 'images/char-boy.png';
 };
 
 Player.prototype.update = function() {
-    // Reset the player to start position
-    if (this.y < 0 ) {
+    // If player reaches water, reset the player to start position
+    if (this.y < 0) {
         this.x = 200;
         this.y = 400;
     }
-
 };
 
 Player.prototype.render = function() {
@@ -74,6 +58,7 @@ Player.prototype.render = function() {
 
 };
 
+// Allow player to move using the arrow keys
 Player.prototype.handleInput = function(event) {
     if (event === 'left' && this.x > 0) {
         this.x -= 100;
@@ -84,10 +69,8 @@ Player.prototype.handleInput = function(event) {
     } else if (event === 'down' && this.y < 400) {
         this.y += 82;
     }
-    
 };
 
-// Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
 var enemy1 = new Enemy(-100, 60, 90);
 var enemy2 = new Enemy(-400, 145, 150);
@@ -97,8 +80,7 @@ var allEnemies = [enemy1, enemy2, enemy3];
 // Place the player object in a variable called player
 var player = new Player();
 
-// This listens for key presses and sends the keys to your
-// Player.handleInput() method. You don't need to modify this.
+// This listens for key presses and sends the keys to Player.handleInput() method
 document.addEventListener('keydown', function(e) {
     var allowedKeys = {
         37: 'left',
